@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: my-api
+
+spec:
+  replicas: 5
+
+  selector:
+    matchLabels:
+      app: my-api
+
+  template:
+    metadata:
+      labels:
+        app: my-api
+
+    spec:
+      containers:
+        - name: my-api
+          image: my-api:v2
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 3000
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
