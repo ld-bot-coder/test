@@ -1,8 +1,7 @@
 const express = require("express");
 
 const app = express();
-
-// health check endpoint
+//health check endpoint
 app.get("/health", (req, res) => {
   res.send("OK");
 });
@@ -21,7 +20,15 @@ app.get("/hello", (req, res) => {
   });
 });
 
+
+
+
+
+app.get("/secret", (req, res) => {
+  res.send("Secret data");
+});
 const PORT = process.env.PORT || 3000;
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
